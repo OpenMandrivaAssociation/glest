@@ -123,7 +123,6 @@ EOF
 install -d $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=Glest
 Comment=%{Summary}
 Exec=soundwrapper %_gamesbindir/%{name}
