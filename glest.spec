@@ -20,7 +20,7 @@ Source13:	%{name}-48x48.png
 Patch0:		glest-2.0.0-extraqual.patch
 Requires:	%{name}-data >= %{version}
 BuildRequires:	MesaGLU-devel zlib-devel openal-devel xerces-c-devel dos2unix
-BuildRequires:	SDL-devel oggvorbis-devel XFree86-devel SDL_net-devel
+BuildRequires:	SDL-devel oggvorbis-devel X11-devel SDL_net-devel
 BuildRequires:  SDL_mixer-devel Mesa-common-devel jam unzip autoconf >= 2.5 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
