@@ -1,6 +1,6 @@
 %define	name	glest
 %define	version	2.0.1
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 %define	Summary	A free 3d real time strategy game
 
 Name:		%{name}
