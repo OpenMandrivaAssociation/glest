@@ -113,14 +113,18 @@ install -m644 mk/linux/glest.ini $RPM_BUILD_ROOT%{_gamesdatadir}/%{name}
 install -m644 translations/*lng $RPM_BUILD_ROOT%{_gamesdatadir}/%{name}/data/lang
 install -m644 maps/*gbm $RPM_BUILD_ROOT%{_gamesdatadir}/%{name}/maps
 
-install -d $RPM_BUILD_ROOT%{_menudir}
-cat <<EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}):command="%{_gamesbindir}/%{name}" \
-		icon=%{name}.png \
-		needs="x11" \
-		section="Amusement/Strategy" \
-		title="Glest"\
-		longtitle="%{Summary}"
+# Desktop file
+mkdir -p $RPM_BUILD_ROOT/%{_datadir}/applications
+cat > $RPM_BUILD_ROOT/%{_datadir}/applications/mandriva-glest.desktop << EOF
+[Desktop Entry]
+Name=Glest
+Comment=Real Time Strategy game
+Exec=%{_gamesbindir}/glest
+Icon=glest
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Game;StrategyGame;
 EOF
 
 install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
@@ -143,7 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-%{_menudir}/%{name}
+%{_datadir}/applications/*
 %{_gamesdatadir}/%{name}/
 %defattr(755,root,root,755)
 %{_gamesbindir}/*
