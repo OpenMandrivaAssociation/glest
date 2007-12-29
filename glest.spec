@@ -1,6 +1,6 @@
 %define	name	glest
-%define	version	2.0.0
-%define	release	%mkrel 2
+%define	version	2.0.1
+%define	release	%mkrel 1
 %define	Summary	A free 3d real time strategy game
 
 Name:		%{name}
@@ -10,18 +10,20 @@ Summary:	%{Summary}
 License:	GPL
 Group:		Games/Strategy
 URL:		http://www.glest.org/
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	%{name}_source_%{version}.zip
 Source1:	%{name}-translations.tar.bz2
 Source2:	%{name}-maps.tar.bz2
 Source3:	%{name}.sh
 Source11:	%{name}-16x16.png
 Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
-Patch0:		glest-2.0.0-extraqual.patch
+Patch0:		glest-2.0.0-unicode.patch
 Requires:	%{name}-data >= %{version}
+Requires:	x11-font-adobe-utopia-75dpi
 BuildRequires:	MesaGLU-devel zlib-devel openal-devel xerces-c-devel dos2unix
 BuildRequires:	SDL-devel oggvorbis-devel X11-devel SDL_net-devel
 BuildRequires:  SDL_mixer-devel Mesa-common-devel jam unzip autoconf >= 2.5 
+BuildConflicts:	libwxgtk-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -36,8 +38,9 @@ Those on which the Will is strong,
 Those will reign on Their behalf."
 
 %prep
-%setup -q -a 1 -a 2
-%patch0 -p1 -b .extraqual
+%setup -q -c %name-%version -a 1 -a 2
+%patch0 -p1 -b .unicode
+#find . -type f | xargs sed -i -e "s/\r//g"
 
 cd mk/linux
 # unfortunately all the files in mk/linux have a dos
@@ -120,18 +123,6 @@ cat <<EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
 		longtitle="%{Summary}"
 EOF
 
-install -d $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=Glest
-Comment=%{Summary}
-Exec=soundwrapper %_gamesbindir/%{name}
-Icon=%{name}
-Terminal=false
-Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Games-Strategy;Game;StrategyGame;
-EOF
-
 install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
 install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
 install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
@@ -156,6 +147,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_gamesdatadir}/%{name}/
 %defattr(755,root,root,755)
 %{_gamesbindir}/*
-%{_datadir}/applications/mandriva-%{name}.desktop
-
 
