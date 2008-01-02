@@ -27,15 +27,10 @@ BuildConflicts:	libwxgtk-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-Glest is a 3d OpenGL real time strategy game. It takes place in a 
+Glest is a 3D OpenGL real time strategy game. It takes place in a 
 context which could be compared to that of the pre-renaissance 
 Europe, with the licence that magic forces exist in the environment 
 and can be controlled.
-
-"Deep rests Science in the Mind
-as Magic deep in the Heart;
-Those on which the Will is strong,
-Those will reign on Their behalf."
 
 %prep
 %setup -q -c %name-%version -a 1 -a 2
