@@ -1,6 +1,6 @@
 %define	name	glest
 %define	version	3.1.2
-%define	release	%mkrel 4
+%define	release	%mkrel 3
 %define	Summary	A free 3d real time strategy game
 
 Name:		%{name}
@@ -17,6 +17,8 @@ Source3:	%{name}.sh
 Source11:	%{name}-16x16.png
 Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
+# Fix various missing includes for GCC 4.3 - AdamW 2008/12
+Patch0:		glest-3.1.2-gcc43.patch
 Requires:	%{name}-data >= %{version}
 Requires:	x11-font-adobe-utopia-75dpi
 BuildRequires:	zlib-devel
@@ -40,7 +42,8 @@ Europe, with the licence that magic forces exist in the environment
 and can be controlled.
 
 %prep
-%setup -q -n %name-source-%version -a 1 -a 2
+%setup -q -n %{name}-source-%{version} -a 1 -a 2
+%patch0 -p1 -b .gcc43
 
 recode ISO-8859-1..UTF-8 README* *.txt
 
