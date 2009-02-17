@@ -1,16 +1,12 @@
-%define	name	glest
-%define	version	3.1.2
-%define	release	%mkrel 3
-%define	Summary	A free 3d real time strategy game
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Summary:	%{Summary}
+Summary:	A free 3d real time strategy game
+Name:		glest
+Version:	3.2.1
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.glest.org/
-Source0:	http://downloads.sourceforge.net/glest/%{name}-source-%{version}.tar.bz2
+Source0:	http://www.titusgames.de/%{name}-source-%{version}.tar.bz2
+# (tpg) all stuff from http://www.glest.org/files/contrib/translations/
 Source1:	%{name}-translations.tar.bz2
 Source2:	%{name}-maps.tar.bz2
 Source3:	%{name}.sh
@@ -18,7 +14,6 @@ Source11:	%{name}-16x16.png
 Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
 # Fix various missing includes for GCC 4.3 - AdamW 2008/12
-Patch0:		glest-3.1.2-gcc43.patch
 Requires:	%{name}-data >= %{version}
 Requires:	x11-font-adobe-utopia-75dpi
 BuildRequires:	zlib-devel
@@ -32,6 +27,7 @@ BuildRequires:	Mesa-common-devel
 BuildRequires:	jam
 BuildRequires:	unzip
 BuildRequires:	recode
+BuildRequires:	lua-devel
 BuildConflicts:	libwxgtk-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -43,53 +39,16 @@ and can be controlled.
 
 %prep
 %setup -q -n %{name}-source-%{version} -a 1 -a 2
-%patch0 -p1 -b .gcc43
 
 recode ISO-8859-1..UTF-8 README* *.txt
 
 pushd translations
-unzip catala_1.2.2.zip
-mv catala_1.2.2.lng catala.lng
-
-unzip cesky_1.2.1.zip
-unzip danish_1.0.9.zip
-
-unzip deutsch_1.0.1.zip
-mv deutsch_1.0.1.lng german.lng
-
-unzip dutch_1.0.9.zip
-unzip euskara_1.0.9.zip
-unzip francais_1.1.1.zip
-unzip hebrew_1.2.1.zip
-
-unzip italiano_1.0.1.zip
-mv italiano_1.0.1.lng italiano.lng
-
-unzip magyar_1.1.0.zip
-
-unzip norsk_0.8.1.zip
-mv norsk_0.8.1.lng norsk.lng
-
-unzip polish_1.0.9.zip
-
-unzip portugues_1.0.1.zip
-mv portugues_1.0.1.lng portuges.lng
-
-unzip russian_1.0.9.zip
-unzip slovak_1.2.1.zip
-unzip turkish_1.0.9.zip
+for i in *.zip; do unzip -o $i; done
+mv tradu_pt-br.lng portugues.lng
 popd
 
 pushd maps
-unzip -o 2_kindoms_map.zip 
-unzip -o 3_islands_map.zip
-unzip -o amazone_map.zip
-unzip -o center_punch.zip
-unzip -o islands_map.zip
-unzip -o neighbors.zip
-unzip -o river_world_map.zip
-unzip -o the_lake_map.zip
-unzip -o up_hill_war.zip
+for i in *.zip; do unzip -o $i; done
 popd
 
 %build
