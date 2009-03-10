@@ -48,6 +48,9 @@ for i in *.zip; do unzip -o $i; done
 mv tradu_pt-br.lng portugues.lng
 popd
 
+#fix french language file
+mv translations/fran*.lng translations/francais.lng
+
 pushd maps
 for i in *.zip; do unzip -o $i; done
 popd
@@ -67,6 +70,8 @@ jam -d2 %{_smp_mflags}
 
 %install
 rm -rf %{buildroot}
+
+
 
 # glest has no working "jam install" as of now, so
 # we'll have to do the fun manually
