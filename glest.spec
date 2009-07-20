@@ -1,7 +1,7 @@
 Summary:	A free 3d real time strategy game
 Name:		glest
-Version:	3.2.1
-Release:	%mkrel 2
+Version:	3.2.2
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.glest.org/
@@ -14,7 +14,7 @@ Source11:	%{name}-16x16.png
 Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
 # Fix various missing includes for GCC 4.3 - AdamW 2008/12
-Requires:	%{name}-data >= %{version}
+Requires:	%{name}-data
 Requires:	x11-font-adobe-utopia-75dpi
 Requires:	mesa-demos
 BuildRequires:	zlib-devel
