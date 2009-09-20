@@ -17,7 +17,7 @@ Patch0:		glest-source-3.2.2-missing-headers.patch
 Patch1:		glest-source-3.2.2-format_not_a_string_literal_and_no_format_arguments.patch
 BuildRequires:	zlib-devel
 BuildRequires:	openal-devel
-BuildRequires:	libxerces-c28-devel
+BuildRequires:	xerces-c28-devel
 BuildRequires:	SDL-devel
 BuildRequires:	oggvorbis-devel
 BuildRequires:	SDL_net-devel
