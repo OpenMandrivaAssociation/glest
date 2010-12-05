@@ -1,7 +1,7 @@
 Summary:	A free 3d real time strategy game
 Name:		glest
 Version:	3.2.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.glest.org/
