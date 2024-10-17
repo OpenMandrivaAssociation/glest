@@ -4,7 +4,7 @@ Version:	3.2.2
 Release:	%mkrel 4
 License:	GPLv2+
 Group:		Games/Strategy
-URL:		http://www.glest.org/
+URL:		https://www.glest.org/
 Source0:	http://www.titusgames.de/%{name}-source-%{version}.tar.bz2
 # (tpg) all stuff from http://www.glest.org/files/contrib/translations/
 Source1:	%{name}-translations.tar.bz2
