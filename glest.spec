@@ -15,6 +15,11 @@ Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
 Patch0:		glest-source-3.2.2-missing-headers.patch
 Patch1:		glest-source-3.2.2-format_not_a_string_literal_and_no_format_arguments.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	zlib-devel
 BuildRequires:	openal-devel
 BuildRequires:	xerces-c28-devel
